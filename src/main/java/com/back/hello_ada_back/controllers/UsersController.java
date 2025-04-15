@@ -53,11 +53,6 @@ public class UsersController {
     }
     
 
-    // @DeleteMapping("/{id}")
-    // public void deleteUser(@PathVariable Long id) {
-    //     usersService.deleteUser(id);
-    // }
-
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         usersService.deleteUser(id);
