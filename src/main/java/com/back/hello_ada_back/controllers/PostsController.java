@@ -32,6 +32,11 @@ public class PostsController {
         postsService.deletePost(id);
     }
 
+    @DeleteMapping("/user/{userId}")
+    public void deleteAllPostsOfUser(@PathVariable Long userId) {
+        postsService.deleteAllPostsOfUser(userId);
+    }
+
     @GetMapping("/user/{userId}")
     public List<Posts> getPostsByUserId(@PathVariable Long userId) {
         return postsService.findByUserId(userId);

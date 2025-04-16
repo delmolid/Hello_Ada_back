@@ -34,6 +34,12 @@ public class PostsService {
         postsRepository.deleteById(id);
     }
 
+    public void deleteAllPostsOfUser(Long userId) {
+        List<Posts> userPosts = findByUserId(userId);
+        postsRepository.deleteAll(userPosts);
+
+    }
+
     public Posts createPost(Posts post) {
         return postsRepository.save(post);
     }

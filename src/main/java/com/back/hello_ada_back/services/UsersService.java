@@ -3,6 +3,7 @@ package com.back.hello_ada_back.services;
 import com.back.hello_ada_back.Models.Posts;
 import com.back.hello_ada_back.Models.Users;
 import com.back.hello_ada_back.repositories.UsersRepository;
+import com.back.hello_ada_back.repositories.PostsRepository;
 
 import java.util.List;
 
