@@ -50,8 +50,8 @@ public AuthenticationManager authenticationManager(HttpSecurity http) throws Exc
 				.sameOrigin()
 			)
 			.authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/h2-console/**").permitAll();
-                auth.requestMatchers("/api/users/createUser").permitAll(); // Permettre la création d'utilisateur
+                auth.requestMatchers("/h2-console/**").permitAll(); 
+                auth.requestMatchers("/api/users/createUser").permitAll(); 
 				auth.requestMatchers("/login").permitAll();
 				auth.anyRequest().authenticated();
 			})
