@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 
 import jakarta.persistence.*;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,30 +29,33 @@ public class Users {
     @NotBlank(message = "L'email est obligatoire")
     @Email(message = "Format d'email invalide")
     @Column(name = "email", nullable = false)
+    @JsonIgnore
     private String email;
 
     @NotBlank(message = "Le mot de passe est obligatoire")
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
   
     
-@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-@JsonIgnoreProperties({"user"})
-private List<Posts> posts;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"user"})
+    @JsonIgnore
+    private List<Posts> posts;
 
-public Users(){
+    public Users() {
 
-}
+    }
 
-public Users(String username, String profilPicture, String description, String email, String password) {
-    this.username = username;
-    this.profilPicture = profilPicture;
-    this.description = description;
-    this.email = email;
-    this.password = password;
-}
+    public Users(String username, String profilPicture, String description, String email, String password) {
+        this.username = username;
+        this.profilPicture = profilPicture;
+        this.description = description;
+        this.email = email;
+        this.password = password;
+    }
 
-    // getters and setters
+    
 
     public Long getId() {
         return this.id;
@@ -109,5 +114,3 @@ public Users(String username, String profilPicture, String description, String e
     }
 
 }
-
-   

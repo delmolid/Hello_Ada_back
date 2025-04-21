@@ -1,12 +1,8 @@
 package com.back.hello_ada_back.services;
 
-import com.back.hello_ada_back.Models.Posts;
 import com.back.hello_ada_back.Models.Users;
 import com.back.hello_ada_back.repositories.UsersRepository;
-import com.back.hello_ada_back.repositories.PostsRepository;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +27,28 @@ public class UsersService {
 
     public void deleteUser(Long id) {
         usersRepository.deleteById(id);
+    }
+
+    public Users updateUser(Users user) {
+        return usersRepository.save(user);
+    }
+
+    public Users updateUserProfile(Long userId, String username, String profilPicture, String description) {
+        Users user = findById(userId);
+
+        if (username != null) {
+            user.setUsername(username);
+        }
+        
+        if (profilPicture != null) {
+            user.setProfilPicture(profilPicture);
+        }
+        
+        if (description != null) {
+            user.setDescription(description);
+        }
+        
+        return usersRepository.save(user);
     }
     
 } 

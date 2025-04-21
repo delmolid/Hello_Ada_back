@@ -3,6 +3,7 @@ package com.back.hello_ada_back.controllers;
 import com.back.hello_ada_back.Models.Posts;
 import com.back.hello_ada_back.services.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -40,5 +41,21 @@ public class PostsController {
     @GetMapping("/user/{userId}")
     public List<Posts> getPostsByUserId(@PathVariable Long userId) {
         return postsService.findByUserId(userId);
+    }
+
+    @PutMapping("/{id}/updatePost")
+    public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody Posts updatePost) {
+        try {
+            Posts post = postsService.findById(id);
+
+            Posts updatedPost = postsService.updatePost(id, 
+            updatePost.getPostTitle(),
+            updatePost.getPostPicture(),
+            updatePost.getContent());
+            return ResponseEntity.ok().body(updatedPost);
+            
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Erreur de la mise à jour du post : " + e.getMessage());
+        }
     }
 } 

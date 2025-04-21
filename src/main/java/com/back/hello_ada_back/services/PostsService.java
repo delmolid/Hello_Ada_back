@@ -1,14 +1,9 @@
 package com.back.hello_ada_back.services;
 
 import com.back.hello_ada_back.Models.Posts;
-import com.back.hello_ada_back.Models.Users;
 import com.back.hello_ada_back.repositories.PostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
-import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -65,4 +60,22 @@ public class PostsService {
             
 //         };
 //     }
+
+    public Posts updatePost(Long id, String postTitle, String postPicture, String content) {
+        Posts post = findById(id);
+
+        if (postTitle != null) {
+            post.setPostTitle(postTitle);
+        }
+        
+        if (postPicture != null) {
+            post.setPostPicture(postPicture);
+        }
+        
+        if (content != null) {
+            post.setContent(content);
+        }
+        
+        return postsRepository.save(post);
+    }
 }
