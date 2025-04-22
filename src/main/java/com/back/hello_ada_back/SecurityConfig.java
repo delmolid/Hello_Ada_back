@@ -33,26 +33,21 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
-				.csrf(csrf -> csrf.disable())
-				.headers(headers -> headers
-						.frameOptions()
-						.sameOrigin())
-				.authorizeHttpRequests(auth -> {
-					auth.requestMatchers("/h2-console/**").permitAll();
-					auth.requestMatchers("/api/users/createUser").permitAll();
-					auth.requestMatchers("/login").permitAll();
-					auth.anyRequest().authenticated();
-				})
-				.formLogin(form -> form
-						.defaultSuccessUrl("/api/posts", true)
-						.permitAll())
-				.logout(logout -> logout
-						.logoutUrl("/api/logout")
-						.logoutSuccessUrl("/login")
-						.invalidateHttpSession(true)
-						.deleteCookies("JSESSIONID")
-						.permitAll());
-
+			.csrf(csrf -> csrf.disable())
+			.headers(headers -> headers
+				.frameOptions()
+				.sameOrigin())
+			.authorizeHttpRequests(auth -> {
+				auth.requestMatchers("/h2-console/**").permitAll();
+				auth.requestMatchers("/api/users/createUser").permitAll();
+				auth.requestMatchers("/api/users").permitAll();
+				auth.requestMatchers("/login").permitAll();
+				auth.anyRequest().authenticated();
+			})
+			// désac le formulaire de connexion :
+			.formLogin(form -> form.disable())
+			.httpBasic(basic -> {});            
+		
 		return http.build();
 	}
 

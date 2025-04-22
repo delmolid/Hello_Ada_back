@@ -16,7 +16,7 @@ import com.back.hello_ada_back.Models.Users;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
- @Autowired
+ @Autowired 
   private UsersRepository usersRepository;   
 
 @Override 
