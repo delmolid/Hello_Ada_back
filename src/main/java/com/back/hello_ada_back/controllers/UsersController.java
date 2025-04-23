@@ -21,7 +21,7 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/createUser")
     @ResponseStatus(HttpStatus.CREATED)
     public Users createUser(@Valid @RequestBody Users user) {
@@ -40,17 +40,20 @@ public class UsersController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/{id}")
     public Users getUser(@PathVariable Long id) {
         return usersService.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public List<Users> findAll() {
         return usersService.findAll();
     }
     
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         usersService.deleteUser(id);
@@ -95,6 +98,7 @@ public class UsersController {
     //     return ResponseEntity.ok().body("Mot de passe modifié");
     // }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping("/{id}/updateProfile")
     public ResponseEntity<?> updateProfile(@PathVariable Long id, @RequestBody Users userUpdate) {
         try {

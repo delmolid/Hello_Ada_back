@@ -13,36 +13,43 @@ public class PostsController {
     @Autowired
     private PostsService postsService;
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public List<Posts> getAllPosts() {
         return postsService.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/{id}")
     public Posts getPostById(@PathVariable Long id) {
         return postsService.findById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/createPost")
     public Posts createPost(@RequestBody Posts post) {
         return postsService.createPost(post);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping("/{id}")
     public void deletePost(@PathVariable Long id) {
         postsService.deletePost(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping("/user/{userId}")
     public void deleteAllPostsOfUser(@PathVariable Long userId) {
         postsService.deleteAllPostsOfUser(userId);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/user/{userId}")
     public List<Posts> getPostsByUserId(@PathVariable Long userId) {
         return postsService.findByUserId(userId);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping("/{id}/updatePost")
     public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody Posts updatePost) {
         try {

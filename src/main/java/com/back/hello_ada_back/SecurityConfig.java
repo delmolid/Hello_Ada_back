@@ -6,7 +6,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,9 +39,8 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.csrf(csrf -> csrf.disable())
-			.headers(headers -> headers
-				.frameOptions()
-				.sameOrigin())
+			.cors(cors -> cors.disable())
+			.headers(headers -> headers.frameOptions().sameOrigin())
 			.authorizeHttpRequests(auth -> {
 				auth.requestMatchers("/h2-console/**").permitAll();
 				auth.requestMatchers("/api/users/createUser").permitAll();
@@ -46,9 +50,19 @@ public class SecurityConfig {
 			})
 			// désac le formulaire de connexion :
 			.formLogin(form -> form.disable())
-			.httpBasic(basic -> {});            
+			.httpBasic(basic -> {});         
 		
 		return http.build();
+	}
+
+	@Bean
+	UrlBasedCorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+		configuration.setAllowedMethods(Arrays.asList("*"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 
 	@Bean
