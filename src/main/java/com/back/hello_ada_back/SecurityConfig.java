@@ -45,6 +45,7 @@ public class SecurityConfig {
 				auth.requestMatchers("/h2-console/**").permitAll();
 				auth.requestMatchers("/api/users/createUser").permitAll();
 				auth.requestMatchers("/api/users").permitAll();
+				auth.requestMatchers("/api/users/**").permitAll(); 
 				auth.requestMatchers("/login").permitAll();
 				auth.anyRequest().authenticated();
 			})
@@ -59,7 +60,10 @@ public class SecurityConfig {
 	UrlBasedCorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-		configuration.setAllowedMethods(Arrays.asList("*"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
+		configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
