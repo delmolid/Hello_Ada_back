@@ -45,7 +45,9 @@ public class SecurityConfig {
 				auth.requestMatchers("/h2-console/**").permitAll();
 				auth.requestMatchers("/api/users/createUser").permitAll();
 				auth.requestMatchers("/api/users").permitAll();
-				auth.requestMatchers("/api/users/**").permitAll(); 
+				auth.requestMatchers("/api/users/**").permitAll();
+				auth.requestMatchers("/api/posts").permitAll();
+				auth.requestMatchers("/api/posts/*").permitAll();
 				auth.requestMatchers("/login").permitAll();
 				auth.anyRequest().authenticated();
 			})
