@@ -48,6 +48,8 @@ public class SecurityConfig {
 				auth.requestMatchers("/api/users/**").permitAll();
 				auth.requestMatchers("/api/posts").permitAll();
 				auth.requestMatchers("/api/posts/*").permitAll();
+				auth.requestMatchers("/api/posts/user/*").permitAll();
+				auth.requestMatchers("/api/posts/createPost").permitAll();
 				auth.requestMatchers("/login").permitAll();
 				auth.anyRequest().authenticated();
 			})
