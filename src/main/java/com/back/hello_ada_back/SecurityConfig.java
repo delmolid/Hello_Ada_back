@@ -54,8 +54,10 @@ public class SecurityConfig {
 				auth.requestMatchers("/login").permitAll();
 				auth.anyRequest().authenticated();
 			})
-			// désac le formulaire de connexion :
-			.formLogin(form -> form.disable())
+			.formLogin(form -> form
+                .defaultSuccessUrl("/api/users", true)
+                .permitAll()
+            )
 			.httpBasic(basic -> {});         
 		
 		return http.build();
