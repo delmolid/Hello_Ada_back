@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.back.hello_ada_back.Models.Users;
-import com.back.hello_ada_back.repositories.UsersRepository;
+import com.back.hello_ada_back.Repositories.UsersRepository;
 import com.back.hello_ada_back.services.UsersService;
 
 import java.util.List;

@@ -10,8 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Arrays;
 import java.util.List;
 
-import com.back.hello_ada_back.repositories.UsersRepository;
 import com.back.hello_ada_back.Models.Users;
+import com.back.hello_ada_back.repositories.UsersRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

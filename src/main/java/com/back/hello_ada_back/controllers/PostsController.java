@@ -65,4 +65,4 @@ public class PostsController {
             return ResponseEntity.badRequest().body("Erreur de la mise à jour du post : " + e.getMessage());
         }
     }
-} 
+}

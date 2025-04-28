@@ -10,13 +10,13 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.back.hello_ada_back.services.CustomUserDetailsService;
+
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.back.hello_ada_back.services.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
