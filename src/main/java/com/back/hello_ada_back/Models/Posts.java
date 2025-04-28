@@ -1,8 +1,13 @@
 package com.back.hello_ada_back.Models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.math.BigInteger;
-import java.util.Date;
-import org.hibernate.annotations.CreationTimestamp;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
+
 import jakarta.persistence.*;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -18,7 +23,7 @@ public class Posts {
     private Long id;
 
     @Column(nullable = false, name = "likes")
-    private int likes;
+    private BigInteger likes;
 
     @Column(nullable = false, name = "post_title", length = 255)
     private String postTitle;
@@ -57,18 +62,18 @@ public class Posts {
         this.id = id;
     }
 
-
-    public Long getUserId() {
-        return this.userId;
+    public BigInteger getLikes() {
+        return this.likes;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setLikes(BigInteger likes) {
+        this.likes = likes;
     }
 
-    public int getLikes() {
-
+    public String getPostTitle() {
+        return this.postTitle;
     }
+
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
     }
