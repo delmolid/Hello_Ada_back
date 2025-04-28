@@ -46,3 +46,4 @@ COMMIT;
 INSERT INTO `Users` (`username`, `profil_picture`, `description`, `mail`, `password`) VALUES ('Grace', 'test', 'test', 'test', '1234'); 
 INSERT INTO `Users` (`username`, `profil_picture`, `description`, `mail`, `password`) VALUES ('Ada', 'test', 'test', 'test', '1234'); 
 INSERT INTO `Posts` (`user_id`, `likes`, `post_title`, `post_picture`, `content`, `created_at`) VALUES (1, 0, 'test', 'test', 'test', '2021-01-01 00:00:00');
+

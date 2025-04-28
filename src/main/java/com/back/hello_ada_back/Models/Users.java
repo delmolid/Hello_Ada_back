@@ -1,50 +1,62 @@
 package com.back.hello_ada_back.Models;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "users")
-
 public class Users {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(nullable = false, name = "username", length = 25)
+    @Column(name = "username")
     private String username;
 
-    @Column(nullable = true, name = "profile_picture", length = 500)
+    @Column(nullable =true, name = "profile_picture", length = 500)
     private String profilPicture;
 
     @Column(nullable = true, name = "description", length = 255)
     private String description;
 
-    @Column(nullable = false, name = "email", length = 255)
+    @NotBlank(message = "L'email est obligatoire")
+    @Email(message = "Format d'email invalide")
+    @Column(name = "email", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String email;
 
-    @Column(nullable = false, name = "password", length = 255)
+    @NotBlank(message = "Le mot de passe est obligatoire")
+    @Column(name = "password", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
   
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"user"})
+    @JsonIgnore
     private List<Posts> posts;
 
     public Users() {
+
     }
 
-    public Users(Long id, String username, String profilPicture, String description, String email, String password) {
-    this.id = id;
-    this.username = username;
-    this.profilPicture = profilPicture;
-    this.description = description;
-    this.email = email;
-    this.password = password;
+    public Users(String username, String profilPicture, String description, String email, String password) {
+        this.username = username;
+        this.profilPicture = profilPicture;
+        this.description = description;
+        this.email = email;
+        this.password = password;
     }
 
-    // getters and setters
+    
 
     public Long getId() {
         return this.id;
@@ -85,13 +97,20 @@ public class Users {
     public void setEmail(String email) {
         this.email = email;
     }
-    
     public String getPassword() {
         return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Posts> getPosts() {
+        return this.posts;
+    }
+
+    public void setPosts(List<Posts> posts) {
+        this.posts = posts;
     }
 
 }

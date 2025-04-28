@@ -45,3 +45,9 @@ application-local.properties
 
 ### Mac OS ###
 .DS_Store
+
+# H2 database files
+data/
+database/
+*.db
+*.trace.db
